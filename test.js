@@ -1,22 +1,53 @@
 // function getSeason(date) {
-//   if(Object.getPrototypeOf(date) === Object.getPrototypeOf(new Date())){
-//     let season = date.getMonth();
-//     if(season === 0 || season === 1 || season === 11){
-//       return('winter');
-//     }else if (season === 2 || season === 3 || season === 4){
-//       return('spring');
-//     }else if(season === 5 || season === 6 || season === 7){
-//       return('summer')
-//     } else if (season === 9 || season === 8 || season === 10) {
-//       return('fall')
+//     year = date.getFullYear();
+//     monthIndex = date.getMonth();
+//     day = date.getDate();
+//     hours = date.getHours();
+//     minutes = date.getMinutes();
+//     seconds = date.getSeconds();
+//     milliseconds = date.getMilliseconds();
+//     let fake = new Date(year, monthIndex, day, hours, minutes, seconds, milliseconds);
+//     console.log(fake.getTime());
+//     console.log(date.getTime());
+//     if(date.getTime() === fake.getTime()){
+//       // throw new Error('Invalid date!');
 //     }
-    
-//     } else {throw new Error('Invalid date!');}
-// }
+//   }
 
-// getSeason(new Date(481, 5, 5, 21, 58, 37, 272));
-const date = new Date(481, 1, 5, 21, 58, 37, 272);
-// console.log(Object.getPrototypeOf(Date()));
-// console.log(Object.getPrototypeOf(new Date()));
-console.log(typeof date);
-console.log(date.getFullYear() + date.getMonth() + date.getDay() + date.getHours() + date.getMinutes() + date.getSeconds() + date.getMilliseconds());
+//   const deeperFakeDate = {
+//     toString() {
+//         return Date.prototype.toString.call(new Date());
+//     },
+//     getMonth() {
+//         return Date.prototype.getMonth.call(new Date());
+//     },
+//     getFullYear() {
+//         return Date.prototype.getFullYear.call(new Date(1994, 1, 2, 3, 4, 5));
+//     },
+//     getDate() {
+//         return Date.prototype.getDate.call(new Date(2020, 0, 3, 4, 5, 6));
+//     },
+//     getHours() {
+//         return Date.prototype.getHours.call(new Date(1978, 2, 4, 5, 6, 7));
+//     },
+//     getMinutes() {
+//         return Date.prototype.getMinutes.call(new Date(202, 3, 5, 6, 7, 8));
+//     },
+//     getSeconds() {
+//         return Date.prototype.getSeconds.call(new Date(1, 4, 6, 7, 8, 9));
+//     },
+//     getMilliseconds() {
+//         return Date.prototype.getMilliseconds.call(new Date(2019, 7, 8, 9, 10, 11));
+//     },
+//     getDay() {
+//         return Date.prototype.getDay.call(new Date(1812, 8, 9, 10, 11, 12));
+//     },
+//     [Symbol.toStringTag]: 'Date'
+// };
+
+// Object.setPrototypeOf(deeperFakeDate, Object.getPrototypeOf(new Date()));
+
+
+
+//   getSeason(deeperFakeDate);
+  

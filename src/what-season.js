@@ -14,8 +14,32 @@ const { NotImplementedError } = require('../extensions/index.js');
 function getSeason(date) {
   if(!date){
     return 'Unable to determine the time of year!';
-  }else{
-  if(Object.getPrototypeOf(date) === Object.getPrototypeOf(new Date()) && typeof date === 'object'){
+  }
+  try{
+    date.getFullYear();
+  } catch(error){
+    throw new Error('Invalid date!');
+  }
+    if(Object.getPrototypeOf(date) !== Object.getPrototypeOf(new Date())){
+      throw new Error('Invalid date!');
+    }
+
+    try{
+      year = date.getFullYear();
+      monthIndex = date.getMonth();
+      day = date.getDate();
+      hours = date.getHours();
+      minutes = date.getMinutes();
+      seconds = date.getSeconds();
+      milliseconds = date.getMilliseconds();
+      let fake = new Date(year, monthIndex, day, hours, minutes, seconds, milliseconds);
+      if(date.getTime() !== fake.getTime()){
+        throw new Error('Invalid date!');
+      }
+    } catch(error){
+      throw new Error('Invalid date!');
+    }
+    
     let season = date.getMonth();
     if(season === 0 || season === 1 || season === 11){
       return('winter');
@@ -26,10 +50,6 @@ function getSeason(date) {
     } else if (season === 9 || season === 8 || season === 10) {
       return('fall')
     }
-    }else{
-      throw new Error('Invalid date!');
-    } 
-  }
 }
 
 module.exports = {
