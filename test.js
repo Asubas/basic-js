@@ -8,10 +8,8 @@ function transform(arr) {
     newArr = arr.slice(0);
     for(let i = 0; i < newArr.length; i++){
       if(newArr[i] === '--double-next'){
-        console.log(newArr[newArr.length - 1])
-        if(newArr.length - 1 === '--double-next'){
+        if(newArr[newArr.length - 1] === '--double-next'){
           newArr.pop();
-          console.log(newArr)
           return newArr;
         }else{
           newArr[i] = newArr[i+1];
@@ -26,14 +24,15 @@ function transform(arr) {
           newArr.splice(newArr[i-1],2);
           return newArr;
         }
+      }else if(newArr[i] === '--discard-next' && newArr[i+2] === '--double-prev' || newArr[i] === '--discard-next' && newArr[i+2] === '--discard-prev'){
+        newArr.splice(i,3);
+        return newArr;
       }else if (newArr[i] === '--discard-next'){
-        console.log(newArr.length -1)
-        if(newArr.length - 1 === '--discard-next'){
+        if(newArr[newArr.length - 1] === '--discard-next'){
           newArr.pop();
-          console.log(newArr)
           return newArr;
         }else{       
-          newArr.splice(newArr[i],2);
+          newArr.splice(i,2);
           return newArr;
         }
       }else if(newArr[i] === '--double-prev'){
@@ -51,4 +50,5 @@ function transform(arr) {
   }return arr;
 }
 
-transform( [1, 2, 3, '--double-next']);
+// transform(  [1, 2, 3, '--discard-next', 1337, '--double-prev', 4, 5]);
+console.log(transform(  [ 3, '--double-next', '1']))
