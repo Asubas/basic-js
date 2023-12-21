@@ -1,16 +1,27 @@
-function sortByHeight(arr) {
-  let newArr = arr.filter(item => item !== -1);
-  newArr.sort((a, b) => a - b);
-  let index = 0;
-  let sortArr = arr.map(item => {
-    if (item === -1) {
-      return -1;
-    } else {
-      return newArr[index++];
+function minesweeper(matrix) {
+  let newMatrix = matrix;
+  let count = 0;
+  for(let i = 0 ; i < matrix.length; i++){
+    for(let j = 0; j < matrix[i].length; j++){
+      if(matrix[i][j] === true){
+        newMatrix[i][j] = 1; 
+      }
+        if(matrix[i][j] === false){
+          if(i > 0 && j > 0){
+            if(matrix[i - 1][j] === true || matrix[i + 1][j] === true || matrix[i][j + 1] === true || matrix[i][j - 1] === true
+              || matrix[i - 1][j - 1] === true || matrix[i - 1][j + 1] === true || matrix[i + 1][j + 1] || matrix[i + 1][j - 1]){
+              count ++;
+            }
+            newMatrix[i][j] = count;
+            count = 0;
+          }
+        }
     }
-  });
-
-  return sortArr;
+  }return newMatrix;
 }
 
-console.log(sortByHeight([-1, 150, 190, 170, -1, -1, 160, 180]));
+console.log(minesweeper(
+  [
+  [true, false, false],
+  [false, true, false],
+  [false, false, false]]));
