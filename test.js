@@ -1,14 +1,16 @@
-function getSumOfDigits(n) {
-  let arr = n.toString().split('');
-  let sum = arr.reduce((prev, current) => {
-    return prev + Number(current);
-  }, 0);
+function sortByHeight(arr) {
+  let newArr = arr.filter(item => item !== -1);
+  newArr.sort((a, b) => a - b);
+  let index = 0;
+  let sortArr = arr.map(item => {
+    if (item === -1) {
+      return -1;
+    } else {
+      return newArr[index++];
+    }
+  });
 
-  if (sum < 10) {
-    return sum;
-  } else {
-    return getSumOfDigits(sum);
-  }
+  return sortArr;
 }
 
-console.log(getSumOfDigits(91)); // Вывод: 1
+console.log(sortByHeight([-1, 150, 190, 170, -1, -1, 160, 180]));
