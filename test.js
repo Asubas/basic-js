@@ -1,19 +1,14 @@
-function encodeLine(str) {
-  let count = 1;
-  let newArr = [];
-  let arr = str.split('');
+function getSumOfDigits(n) {
+  let arr = n.toString().split('');
+  let sum = arr.reduce((prev, current) => {
+    return prev + Number(current);
+  }, 0);
 
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === arr[i + 1]) {
-      count++;
-    } else {
-      if (count > 1) {
-        newArr.push(count);
-      }
-      newArr.push(arr[i]);
-      count = 1; 
-    }
+  if (sum < 10) {
+    return sum;
+  } else {
+    return getSumOfDigits(sum);
   }
-  return newArr.join('');
 }
-console.log(encodeLine('aaaatttt'));
+
+console.log(getSumOfDigits(91)); // Вывод: 1
