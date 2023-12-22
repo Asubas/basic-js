@@ -1,6 +1,7 @@
-function isMAC48Address(n) {
-  const regex = /^[A-F0-9]{2}(-[A-F0-9]{2}){5}$/i;
-  return regex.test(n);
+function getEmailDomain(email) {
+  const arr = email.split('@');
+  arr.reverse();
+  return arr[0].toString();
 }
 
-console.log(isMAC48Address('00-1B-63-84-45-E6'))
+console.log(getEmailDomain('prettyandsimple@example.com'))
