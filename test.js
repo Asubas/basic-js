@@ -1,17 +1,6 @@
-function getMatrixElementsSum(matrix) {
-  let sum = 0;
-  for (let j = 0; j < matrix[0].length; j++) { 
-    for (let i = 0; i < matrix.length; i++) { 
-      if (matrix[i][j] === 0) {
-        break;
-      }
-      sum += matrix[i][j];
-    }
-  }
-  return sum;
+function isMAC48Address(n) {
+  const regex = /^[A-F0-9]{2}(-[A-F0-9]{2}){5}$/i;
+  return regex.test(n);
 }
-console.log(getMatrixElementsSum([
-  [0, 1, 1, 2],
-  [0, 5, 0, 0],
-  [2, 0, 3, 3],
-]));
+
+console.log(isMAC48Address('00-1B-63-84-45-E6'))
